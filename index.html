@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Grievance Redressal System Architecture</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neutral': {
+                            50: '#f9fafb',
+                            100: '#f3f4f6',
+                            200: '#e5e7eb',
+                            300: '#d1d5db',
+                            400: '#9ca3af',
+                            500: '#6b7280',
+                            600: '#4b5563',
+                            700: '#374151',
+                            800: '#1f2937',
+                            900: '#111827',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        .layer-box {
+            border: 2px solid;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s ease-in-out;
+        }
+        .layer-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .layer-user {
+            background-color: #e5f3ff;
+            border-color: #3b82f6;
+        }
+        .layer-frontend {
+            background-color: #fffbeb;
+            border-color: #f59e0b;
+        }
+        .layer-backend {
+            background-color: #dcfce7;
+            border-color: #10b981;
+        }
+        .layer-data {
+            background-color: #fce7f3;
+            border-color: #ec4899;
+        }
+        .layer-admin {
+            background-color: #f3e8ff;
+            border-color: #8b5cf6;
+        }
+        .component-card {
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .arrow-down {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        .arrow-down-icon {
+            color: #9ca3af;
+            font-size: 1.5rem;
+        }
+        .data-flow-path {
+            position: relative;
+            background: linear-gradient(to right, #60a5fa, #3b82f6);
+            height: 4px;
+            border-radius: 9999px;
+            margin: 0.5rem 0;
+        }
+        .data-flow-path::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 6px 0 6px 10px;
+            border-color: transparent transparent transparent #3b82f6;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" xintegrity="sha512-iecdLmaskl7CVwW1FjA8vS2T7O4uWjE7uL4Q7j3sF7qgE5/mK2s8mD+2+Qz1jR7nC8A0NlT+G4i6z3A7Q7b7dF+2" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="bg-neutral-50 p-8">
+
+    <!-- Header Section -->
+    <header class="bg-white border-b border-neutral-200 p-4 sticky top-0 z-50 rounded-lg shadow-sm">
+        <div class="flex items-center justify-between max-w-7xl mx-auto">
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-sitemap text-2xl text-neutral-700"></i>
+                    <h1 class="text-2xl font-bold text-neutral-800">System Architecture Diagram</h1>
+                </div>
+                <div class="text-sm text-neutral-500 border-l border-neutral-300 pl-4">
+                    Java-based Public Grievance Redressal System
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto mt-8">
+        <!-- Architecture Overview Section -->
+        <section id="architecture-overview" class="p-6 bg-white border border-neutral-200 rounded-lg shadow-sm">
+            <div class="mb-6">
+                <h2 class="text-2xl font-semibold text-neutral-800 mb-2">System Architecture Overview</h2>
+                <p class="text-neutral-600">A comprehensive layered architecture for the Public Grievance Redressal System, ensuring modularity, scalability, and security.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4 flex items-start gap-3">
+                    <i class="fa-solid fa-layer-group text-blue-500 text-lg"></i>
+                    <div>
+                        <h3 class="text-neutral-800 font-medium">5 Layers</h3>
+                        <p class="text-sm text-neutral-600">Modular design for maintainability</p>
+                    </div>
+                </div>
+                <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4 flex items-start gap-3">
+                    <i class="fa-brands fa-java text-green-500 text-lg"></i>
+                    <div>
+                        <h3 class="text-neutral-800 font-medium">Java Stack</h3>
+                        <p class="text-sm text-neutral-600">Backend and desktop applications</p>
+                    </div>
+                </div>
+                <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4 flex items-start gap-3">
+                    <i class="fa-solid fa-users text-purple-500 text-lg"></i>
+                    <div>
+                        <h3 class="text-neutral-800 font-medium">Multi-Platform</h3>
+                        <p class="text-sm text-neutral-600">Desktop and mobile access for citizens</p>
+                    </div>
+                </div>
+                <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4 flex items-start gap-3">
+                    <i class="fa-solid fa-shield-alt text-red-500 text-lg"></i>
+                    <div>
+                        <h3 class="text-neutral-800 font-medium">Robust Security</h3>
+                        <p class="text-sm text-neutral-600">Authentication, authorization, and data integrity</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture-diagram" class="mt-8 p-6 bg-white border border-neutral-200 rounded-lg shadow-sm">
+            <h2 class="text-2xl font-semibold text-neutral-800 mb-6">Layered Architecture Diagram</h2>
+            
+            <div class="space-y-8">
+                <!-- User Layer -->
+                <div class="layer-box layer-user">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fa-solid fa-user-circle text-blue-600 text-xl"></i>
+                        <h3 class="text-lg font-semibold">User Layer</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="component-card">
+                            <h4 class="font-medium text-neutral-800">Citizen - JavaFX Desktop App</h4>
+                            <p class="text-sm text-neutral-600">Client-side application for citizens to submit and track complaints.</p>
+                        </div>
+                        <div class="component-card">
+                            <h4 class="font-medium text-neutral-800">Citizen - Android App</h4>
+                            <p class="text-sm text-neutral-600">Mobile application with camera integration and location services.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="arrow-down"><i class="fa-solid fa-arrow-down arrow-down-icon"></i></div>
+
+                <!-- Frontend Application -->
+                <div class="layer-box layer-frontend">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fa-solid fa-laptop-code text-yellow-600 text-xl"></i>
+                        <h3 class="text-lg font-semibold">Frontend Application</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="component-card">
+                            <h4 class="font-medium text-neutral-800">Complaint Submission Form</h4>
+                            <p class="text-sm text-neutral-600">Captures complaint details, file attachments, and user information.</p>
+                        </div>
+                        <div class="component-card">
+                            <h4 class="font-medium text-neutral-800">Tracking Dashboard</h4>
+                            <p class="text-sm text-neutral-600">Real-time status updates and a timeline of complaint progress.</p>
+                        </div>
+                        <div class="component-card">
+                            <h4 class="font-medium text-neutral-800">Charts & Analytics (JFreeChart)</h4>
+                            <p class="text-sm text-neutral-600">Visual representation of complaint trends and resolution metrics.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="arrow-down"><i class="fa-solid fa-arrow-down arrow-down-icon"></i></div>
+
+                <!-- Backend Layer -->
+                <div class="layer-box layer-backend">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fa-solid fa-server text-green-600 text-xl"></i>
+                        <h3 class="text-lg font-semibold">Backend Layer (Java)</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="component-card">
+                            <h4 class="font-medium text-neutral-800">Authentication & Authorization</h4>
+                            <p class="text-sm text-neutral-600">Handles user login, session management, and access control.</p>
+                        </div>
+                        <div class="component-card">
+                            <h4 class="font-medium text-neutral-800">Complaint Workflow Management</h4>
+                            <p class="text-sm text-neutral-600">Manages complaint lifecycle, status changes, and assignments.</p>
+                        </div>
+                        <div class="component-card">
+                            <h4 class="font-medium text-neutral-800">Escalation Scheduler (Quartz)</h4>
+                            <p class="text-sm text-neutral-600">Automates the escalation of unresolved complaints based on SLAs.</p>
+                        </div>
+                        <div class="component-card">
+                            <h4 class="font-medium text-neutral-800">Notification System (JavaMail API)</h4>
+                            <p class="text-sm text-neutral-600">Sends email and SMS alerts to users and authorities.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="arrow-down"><i class="fa-solid fa-arrow-down arrow-down-icon"></i></div>
+                
+                <!-- Data Layer -->
+                <div class="layer-box layer-data">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fa-solid fa-database text-pink-600 text-xl"></i>
+                        <h3 class="text-lg font-semibold">Data Layer</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="component-card">
+                            <h4 class="font-medium text-neutral-800">Relational Database (MySQL / PostgreSQL)</h4>
+                            <p class="text-sm text-neutral-600">Stores structured data for citizens, complaints, authorities, and escalation history.</p>
+                        </div>
+                        <div class="component-card">
+                            <h4 class="font-medium text-neutral-800">Evidence File Storage (BLOBs)</h4>
+                            <p class="text-sm text-neutral-600">Manages binary large objects (BLOBs) with integrity hashing for documents and images.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="arrow-down"><i class="fa-solid fa-arrow-down arrow-down-icon"></i></div>
+
+                <!-- Admin / Authority Interface -->
+                <div class="layer-box layer-admin">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fa-solid fa-user-cog text-purple-600 text-xl"></i>
+                        <h3 class="text-lg font-semibold">Admin / Authority Interface</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="component-card">
+                            <h4 class="font-medium text-neutral-800">Dashboard (JavaFX / JSP)</h4>
+                            <p class="text-sm text-neutral-600">Administrative panel for monitoring, assigning complaints, and system management.</p>
+                        </div>
+                        <div class="component-card">
+                            <h4 class="font-medium text-neutral-800">Status Update Module</h4>
+                            <p class="text-sm text-neutral-600">Enables authorities to update complaint status and add notes.</p>
+                        </div>
+                        <div class="component-card">
+                            <h4 class="font-medium text-neutral-800">Reporting Module (JasperReports)</h4>
+                            <p class="text-sm text-neutral-600">Generates custom and scheduled reports from the system data.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Data Flow Scenarios Section -->
+        <section id="data-flow-diagrams" class="p-6 bg-white border border-neutral-200 rounded-lg shadow-sm mt-8">
+            <h2 class="text-2xl font-semibold text-neutral-800 mb-6">Detailed Data Flow Scenarios</h2>
+            
+            <!-- Complaint Submission Flow -->
+            <div class="mb-8">
+                <h3 class="text-lg font-semibold text-neutral-700 mb-4">Complaint Submission Flow</h3>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
+                    <div class="text-center">
+                        <i class="fa-solid fa-user text-blue-500 text-2xl mb-2"></i>
+                        <h4 class="text-sm font-medium">Citizen</h4>
+                    </div>
+                    <div class="data-flow-path"></div>
+                    <div class="text-center">
+                        <i class="fa-solid fa-laptop-code text-yellow-500 text-2xl mb-2"></i>
+                        <h4 class="text-sm font-medium">Frontend</h4>
+                    </div>
+                    <div class="data-flow-path"></div>
+                    <div class="text-center">
+                        <i class="fa-solid fa-server text-green-500 text-2xl mb-2"></i>
+                        <h4 class="text-sm font-medium">Backend</h4>
+                    </div>
+                    <div class="data-flow-path hidden md:block"></div>
+                    <div class="text-center">
+                        <i class="fa-solid fa-database text-pink-500 text-2xl mb-2"></i>
+                        <h4 class="text-sm font-medium">Data Layer</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Escalation Flow -->
+            <div class="mb-8">
+                <h3 class="text-lg font-semibold text-neutral-700 mb-4">Automatic Escalation Flow</h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+                    <div class="text-center">
+                        <i class="fa-solid fa-clock text-blue-500 text-2xl mb-2"></i>
+                        <h4 class="text-sm font-medium">Scheduler</h4>
+                    </div>
+                    <div class="data-flow-path"></div>
+                    <div class="text-center">
+                        <i class="fa-solid fa-server text-green-500 text-2xl mb-2"></i>
+                        <h4 class="text-sm font-medium">Backend</h4>
+                    </div>
+                    <div class="data-flow-path"></div>
+                    <div class="text-center">
+                        <i class="fa-solid fa-user-cog text-purple-500 text-2xl mb-2"></i>
+                        <h4 class="text-sm font-medium">Authority</h4>
+                    </div>
+                    <div class="data-flow-path hidden md:block"></div>
+                </div>
+            </div>
+            
+            <!-- Feedback Loop Flow -->
+            <div>
+                <h3 class="text-lg font-semibold text-neutral-700 mb-4">Feedback Loop (Notifications)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                    <div class="text-center">
+                        <i class="fa-solid fa-server text-green-500 text-2xl mb-2"></i>
+                        <h4 class="text-sm font-medium">Backend</h4>
+                    </div>
+                    <div class="data-flow-path"></div>
+                    <div class="text-center">
+                        <i class="fa-solid fa-envelope text-blue-500 text-2xl mb-2"></i>
+                        <h4 class="text-sm font-medium">Notification System</h4>
+                    </div>
+                    <div class="data-flow-path"></div>
+                    <div class="text-center">
+                        <i class="fa-solid fa-user text-blue-500 text-2xl mb-2"></i>
+                        <h4 class="text-sm font-medium">Citizen</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
